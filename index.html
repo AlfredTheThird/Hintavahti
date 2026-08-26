@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="fi" data-theme="light">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hintavahti</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%96%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<style>
+:root {
+  color-scheme: light;
+  --ground:      #eef1f0;
+  --surface:     #ffffff;
+  --surface-2:   #f7f9f8;
+  --ink:         #101d1c;
+  --ink-2:       #556564;
+  --ink-3:       #7e8d8c;
+  --rule:        #dae1df;
+  --rule-strong: #c3cecc;
+  --accent:      #b5651d;
+  --accent-soft: #f6ece1;
+  --good:        #1baf7a;
+  --s1: #2a78d6;
+  --s2: #eb6834;
+  --s3: #1baf7a;
+  --s4: #eda100;
+  --shadow: 0 1px 2px rgba(16,29,28,.05), 0 8px 24px -12px rgba(16,29,28,.18);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground:      #0d1615;
+    --surface:     #151f1e;
+    --surface-2:   #1b2726;
+    --ink:         #eef3f2;
+    --ink-2:       #9fb0ae;
+    --ink-3:       #7a8a89;
+    --rule:        #263433;
+    --rule-strong: #33443f;
+    --accent:      #e39b5a;
+    --accent-soft: #2a2118;
+    --good:        #199e70;
+    --s1: #3987e5;
+    --s2: #d95926;
+    --s3: #199e70;
+    --s4: #c98500;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground:      #0d1615;
+  --surface:     #151f1e;
+  --surface-2:   #1b2726;
+  --ink:         #eef3f2;
+  --ink-2:       #9fb0ae;
+  --ink-3:       #7a8a89;
+  --rule:        #263433;
+  --rule-strong: #33443f;
+  --accent:      #e39b5a;
+  --accent-soft: #2a2118;
+  --good:        #199e70;
+  --s1: #3987e5;
+  --s2: #d95926;
+  --s3: #199e70;
+  --s4: #c98500;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "Public Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ---------- masthead ---------- */
+.masthead { display: flex; flex-direction: column; gap: 10px; }
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+h1 {
+  font-family: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(30px, 5vw, 46px);
+  line-height: 1.02;
+  letter-spacing: -.025em;
+  margin: 0;
+  text-wrap: balance;
+}
+.trip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 13.5px;
+  color: var(--ink-2);
+  padding-top: 4px;
+}
+.trip b { color: var(--ink); font-weight: 600; }
+
+/* ---------- panels ---------- */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+.panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--rule);
+}
+.panel-title {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -.012em;
+  margin: 0;
+}
+.panel-note { font-size: 12.5px; color: var(--ink-3); }
+
+/* ---------- filters ---------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 26px;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.fgroup { display: flex; flex-direction: column; gap: 7px; }
+.flabel {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font: inherit;
+  font-size: 13px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--rule-strong);
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background .12s, color .12s, border-color .12s;
+}
+.chip:hover { border-color: var(--ink-3); color: var(--ink); }
+.chip[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--surface);
+}
+.chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.chip .dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: 1px;
+}
+
+/* ---------- stat tiles ---------- */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+}
+.tile {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px 18px 18px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  position: relative;
+  overflow: hidden;
+}
+.tile.best { border-color: var(--accent); }
+.tile.best::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--accent);
+}
+.tile-name {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 600;
+  font-size: 14.5px;
+  letter-spacing: -.01em;
+}
+.tile-price {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  font-size: 30px;
+  letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+}
+.tile-meta { font-size: 12.5px; color: var(--ink-2); }
+.tile-src { font-size: 12px; color: var(--ink-3); }
+.badge {
+  align-self: flex-start;
+  margin-top: 6px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ---------- chart ---------- */
+.chart-body { padding: 18px 20px 8px; }
+#chart { width: 100%; height: auto; display: block; overflow: visible; }
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  padding: 4px 20px 18px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.legend span.key { display: inline-flex; align-items: center; gap: 7px; }
+.legend i {
+  width: 14px; height: 3px; border-radius: 2px; display: inline-block;
+}
+.empty-note {
+  padding: 6px 20px 20px;
+  font-size: 13px;
+  color: var(--ink-3);
+  max-width: 62ch;
+}
+
+/* ---------- table ---------- */
+.table-scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 500;
+  background: var(--surface-2);
+  position: sticky; top: 0;
+}
+td.num {
+  font-family: "IBM Plex Mono", monospace;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  font-weight: 500;
+}
+tr.group-head td {
+  background: var(--surface-2);
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .01em;
+}
+tr.cheapest td { background: var(--accent-soft); }
+tr.cheapest td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+td.room { white-space: normal; min-width: 240px; }
+.tag {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10.5px;
+  color: var(--ink-3);
+  border: 1px solid var(--rule-strong);
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+/* ---------- read-me ---------- */
+.readme {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 18px 22px;
+  font-size: 13.5px;
+  color: var(--ink-2);
+  max-width: 78ch;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.readme h2 {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--ink);
+}
+.readme b { color: var(--ink); font-weight: 600; }
+.readme code {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12.5px;
+  background: var(--surface-2);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+footer {
+  font-size: 12.5px;
+  color: var(--ink-3);
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+}
+
+@media (max-width: 620px) {
+  .filters { position: static; }
+  .wrap { padding: 28px 16px 60px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">Hintaseuranta &middot; päivittyy arkisin klo 10</div>
+    <h1>Hintavahti</h1>
+    <div class="trip">
+      <span><b>16.–23.2.2027</b> · 7 yötä</span>
+      <span>2 aikuista + lapset <b>2 v</b> ja <b>6 v</b></span>
+      <span>1 huone · all inclusive</span>
+      <span>Hurghada &amp; Sahl Hasheesh</span>
+    </div>
+  </header>
+
+  <div class="filters" id="filters"></div>
+
+  <section class="tiles" id="tiles"></section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2 class="panel-title">Hintakehitys</h2>
+      <span class="panel-note" id="chart-note"></span>
+    </div>
+    <div class="chart-body"><svg id="chart" role="img" aria-label="Halvimman hinnan kehitys lähteittäin"></svg></div>
+    <div class="legend" id="legend"></div>
+    <p class="empty-note" id="empty-note"></p>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2 class="panel-title">Kaikki huoneet</h2>
+      <span class="panel-note" id="table-note"></span>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Huone</th>
+            <th>Luokka</th>
+            <th>Lähde</th>
+            <th>Hintatyyppi</th>
+            <th style="text-align:right">Hinta</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="readme">
+    <h2>Miten tätä luetaan</h2>
+    <p style="margin:0">Hotellien omat varausjärjestelmät ilmoittavat hinnat <b>ilman veroja</b>, Booking ja Hotels.com <b>verojen kanssa</b>. Egyptissä päälle tulee 12&nbsp;% palvelumaksu ja 14&nbsp;% ALV, eli kerroin <code>1,2768</code>. Verottomasta hinnasta laskettu verollinen hinta on merkitty <span class="tag">arvio</span>.</p>
+    <p style="margin:0">Vaihda ylhäältä <b>Ilman veroja / Verojen kanssa</b> — vasta verollinen näkymä vertailee lähteitä oikein.</p>
+    <p style="margin:0">Kaavio näyttää <b>halvimman</b> hinnan, joka täyttää valitut suodattimet, erikseen kultakin lähteeltä. Jos lähde puuttuu joltain päivältä, viiva katkeaa — hintaa ei arvata.</p>
+    <p style="margin:0"><b>Booking.com</b> tarjoaa samasta huoneesta useaa henkilöjakaumaa. Mukaan otetaan vain rivit, joissa lukee "Aikuisia enintään: 2, Lapsia enintään: 2" — muut ovat halvempia siksi, että niissä on vähemmän matkustajia.</p>
+    <p style="margin:0"><b>Trivagon</b> näkyvin "alkaen"-hinta on harvoin vertailukelpoinen: halvin tarjous on yleensä kahden hengen huone ilman lastensänkyä. Siksi mukaan otetaan vain tarjoukset, joiden huonekuvauksessa lukee perhehuone tai lastensänky, ja myyjä merkitään hintatyyppi-sarakkeeseen. Halvin näkyvä tarjous hylätään, jos huonekuvauksesta puuttuu perhemaininta tai jos siinä lukee &rdquo;Lisävuoteet eivät sisälly hintaan&rdquo;. Myös tarjous, jonka luku on täsmälleen sama kuin hotellin oman järjestelmän veroton hinta, hylätään.</p>
+  </section>
+
+  <footer id="footer"></footer>
+</div>
+
+<script id="price-data" type="application/json">
+{
+  "meta": {
+    "checkin": "2027-02-16",
+    "checkout": "2027-02-23",
+    "nights": 7,
+    "taxMultiplier": 1.2768,
+    "updated": "2026-08-26"
+  },
+  "hotels": [
+    {
+      "id": "aquamarine",
+      "name": "Jaz Aquamarine",
+      "area": "Hurghada"
+    },
+    {
+      "id": "asteria",
+      "name": "Jaz Elite Asteria",
+      "area": "Sahl Hasheesh"
+    },
+    {
+      "id": "steigenberger",
+      "name": "Steigenberger ALDAU Beach",
+      "area": "Hurghada"
+    }
+  ],
+  "sources": [
+    {
+      "id": "direct",
+      "name": "Hotellin oma",
+      "tax": "excl",
+      "slot": 1
+    },
+    {
+      "id": "booking",
+      "name": "Booking.com",
+      "tax": "incl",
+      "slot": 2
+    },
+    {
+      "id": "hotels",
+      "name": "Hotels.com",
+      "tax": "incl",
+      "slot": 3
+    },
+    {
+      "id": "trivago",
+      "name": "Trivago",
+      "tax": "incl",
+      "slot": 4
+    }
+  ],
+  "categories": [
+    {
+      "id": "perus",
+      "name": "Perushuone"
+    },
+    {
+      "id": "allas",
+      "name": "Allas / puutarha"
+    },
+    {
+      "id": "meri",
+      "name": "Merinäköala"
+    },
+    {
+      "id": "sviitti",
+      "name": "Sviitti"
+    }
+  ],
+  "snapshots": [
+    {
+      "date": "2026-08-24",
+      "rows": [
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen Bed, Garden View",
+          "rate": "Super Saver",
+          "price": 1375
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen Bed, Kids Bed, Garden View",
+          "rate": "Super Saver",
+          "price": 1375
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "allas",
+          "room": "JAZ Bluemarine – Deluxe Family, Queen Bed",
+          "rate": "Super Saver",
+          "price": 1439
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen Bed, Kids Bed, Pool View",
+          "rate": "Super Saver",
+          "price": 1507
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen Bed, Pool View",
+          "rate": "Super Saver",
+          "price": 1507
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen Bed, Sea View",
+          "rate": "Super Saver",
+          "price": 1901
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen Bed, Swim Up",
+          "rate": "Super Saver",
+          "price": 2567
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen/Twin, Garden View",
+          "rate": "Stay Longer Save More",
+          "price": 1487.95
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen/Twin, Pool View",
+          "rate": "Stay Longer Save More",
+          "price": 1563
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen/Twin, Partial Sea View",
+          "rate": "Stay Longer Save More",
+          "price": 1714
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen/Twin, Sea View",
+          "rate": "Stay Longer Save More",
+          "price": 1865
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen/Twin, Swim-up",
+          "rate": "Stay Longer Save More",
+          "price": 2243
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Family Suite (2 makuuhuonetta)",
+          "rate": "Stay Longer Save More",
+          "price": 4741
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Family Suite (2 mh), Swim Up",
+          "rate": "Stay Longer Save More",
+          "price": 4950
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Grand Suite",
+          "rate": "Stay Longer Save More",
+          "price": 7898
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Family Suite, merinäköala",
+          "rate": "Non-refundable · 234 €/yö",
+          "price": 1638
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Family Suite, merinäköala",
+          "rate": "Best Luxury AI · 260 €/yö",
+          "price": 1820
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Deluxe Suite, merinäköala",
+          "rate": "Non-refundable · 289 €/yö",
+          "price": 2023
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Deluxe Suite, merinäköala",
+          "rate": "Best Luxury AI · 321 €/yö",
+          "price": 2247
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "perus",
+          "room": "Deluxe Family Room, Garden View",
+          "rate": "Genius −16 %",
+          "price": 1735
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "perus",
+          "room": "Deluxe Family Queen, Garden View, lastensänky",
+          "rate": "Genius −16 %",
+          "price": 1735
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe Family Room, Pool View – Jaz Bluemarine",
+          "rate": "Genius −16 %",
+          "price": 1816
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe-perhehuone, allasnäköala",
+          "rate": "Genius −16 %",
+          "price": 1902
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe Family Queen, Pool View, lastensänky",
+          "rate": "Genius −16 %",
+          "price": 1902
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "meri",
+          "room": "Deluxe-perhehuone, merinäköala",
+          "rate": "Genius −16 %",
+          "price": 2397
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen/Twin, Garden View",
+          "rate": "Genius",
+          "price": 2292
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen/Twin, Pool View",
+          "rate": "Genius",
+          "price": 2408
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen/Twin, Sea View",
+          "rate": "Genius",
+          "price": 2874
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen/Twin, Partial Sea View",
+          "rate": "Genius",
+          "price": 2934
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen/Twin, Swim-up",
+          "rate": "Genius",
+          "price": 3456
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Perhesviitti",
+          "rate": "Ei-hyvitettävä",
+          "price": 1958
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Perhesviitti",
+          "rate": "Hyvitettävä",
+          "price": 2176
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Deluxe-sviitti",
+          "rate": "Ei-hyvitettävä",
+          "price": 2416
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Deluxe-sviitti",
+          "rate": "Hyvitettävä",
+          "price": 2684
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Signature-sviitti",
+          "rate": "Ei-hyvitettävä",
+          "price": 2976
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Presidenttisviitti, oma allas",
+          "rate": "Ei-hyvitettävä",
+          "price": 7508
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "hotels",
+          "cat": "perus",
+          "room": "Kahden hengen perhehuone, puutarhanäköala (Deluxe, lastensänky)",
+          "rate": "Jäsenhinta −10 %",
+          "price": 1364
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "hotels",
+          "cat": "allas",
+          "room": "Kahden hengen perhehuone, allasnäköala (Deluxe, Jaz Bluemarine)",
+          "rate": "Jäsenhinta −10 %",
+          "price": 1450
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "hotels",
+          "cat": "allas",
+          "room": "Perhehuone, allasnäköala (Deluxe)",
+          "rate": "Jäsenhinta −10 %",
+          "price": 1542
+        },
+        {
+          "hotel": "asteria",
+          "source": "hotels",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen/Twin, Garden View",
+          "rate": "Julkinen hinta",
+          "price": 1690
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "hotels",
+          "cat": "sviitti",
+          "room": "Family Suite",
+          "rate": "Ei-hyvitettävä",
+          "price": 2457
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "trivago",
+          "cat": "perus",
+          "room": "Kahden hengen perhehuone, puutarhanäköala (Deluxe, lastensänky)",
+          "rate": "Travellink · 181 €/yö · maksuton peruutus",
+          "price": 1268
+        }
+      ]
+    },
+    {
+      "date": "2026-08-25",
+      "rows": [
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen Bed, Garden View",
+          "rate": "Super Saver",
+          "price": 1375
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen Bed, Kids Bed, Garden View",
+          "rate": "Super Saver",
+          "price": 1375
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "allas",
+          "room": "JAZ Bluemarine – Deluxe Family, Queen Bed",
+          "rate": "Super Saver",
+          "price": 1439
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen Bed, Kids Bed, Pool View",
+          "rate": "Super Saver",
+          "price": 1507
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen Bed, Pool View",
+          "rate": "Super Saver",
+          "price": 1507
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen Bed, Sea View",
+          "rate": "Super Saver",
+          "price": 1901
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen Bed, Swim Up",
+          "rate": "Super Saver",
+          "price": 2567
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen/Twin, Garden View",
+          "rate": "Stay Longer Save More",
+          "price": 1487
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen/Twin, Pool View",
+          "rate": "Stay Longer Save More",
+          "price": 1563
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen/Twin, Partial Sea View",
+          "rate": "Stay Longer Save More",
+          "price": 1714
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen/Twin, Sea View",
+          "rate": "Stay Longer Save More",
+          "price": 1865
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen/Twin, Swim-up",
+          "rate": "Stay Longer Save More",
+          "price": 2243
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Family Suite (2 makuuhuonetta)",
+          "rate": "Stay Longer Save More",
+          "price": 4741
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Family Suite (2 mh), Swim Up",
+          "rate": "Stay Longer Save More",
+          "price": 4950
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Grand Suite",
+          "rate": "Stay Longer Save More",
+          "price": 7898
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Family Suite, merinäköala",
+          "rate": "Non-refundable · 234 €/yö",
+          "price": 1638
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Family Suite, merinäköala",
+          "rate": "Best Luxury AI · 260 €/yö",
+          "price": 1820
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Deluxe Suite, merinäköala",
+          "rate": "Non-refundable · 289 €/yö",
+          "price": 2023
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Deluxe Suite, merinäköala",
+          "rate": "Best Luxury AI · 321 €/yö",
+          "price": 2247
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "perus",
+          "room": "Deluxe Family Room, Garden View",
+          "rate": "Genius −16 %",
+          "price": 1736
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "perus",
+          "room": "Deluxe Family Queen, Garden View, lastensänky",
+          "rate": "Genius −16 %",
+          "price": 1736
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe Family Room, Pool View – Jaz Bluemarine",
+          "rate": "Genius −16 %",
+          "price": 1817
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe-perhehuone, allasnäköala",
+          "rate": "Genius −16 %",
+          "price": 1903
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe Family Queen, Pool View, lastensänky",
+          "rate": "Genius −16 %",
+          "price": 1903
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "meri",
+          "room": "Deluxe-perhehuone, merinäköala",
+          "rate": "Genius −16 %",
+          "price": 2399
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe Family Room – Swim Up",
+          "rate": "Genius −16 %",
+          "price": 3239
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen/Twin, Garden View",
+          "rate": "Genius",
+          "price": 2293
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen/Twin, Pool View",
+          "rate": "Genius",
+          "price": 2410
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen/Twin, Sea View",
+          "rate": "Genius",
+          "price": 2876
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen/Twin, Partial Sea View",
+          "rate": "Genius",
+          "price": 2936
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen/Twin, Swim-up",
+          "rate": "Genius",
+          "price": 3458
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Family Suite (2 Bedrooms)",
+          "rate": "Genius",
+          "price": 7907
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Family Suite (2 Bedrooms), Swim Up",
+          "rate": "Genius",
+          "price": 9414
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Grand Suite",
+          "rate": "Genius",
+          "price": 11582
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Perhesviitti",
+          "rate": "Ei-hyvitettävä",
+          "price": 1959
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Perhesviitti",
+          "rate": "Hyvitettävä",
+          "price": 2177
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Deluxe-sviitti",
+          "rate": "Ei-hyvitettävä",
+          "price": 2417
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Deluxe-sviitti",
+          "rate": "Hyvitettävä",
+          "price": 2686
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Signature-sviitti",
+          "rate": "Ei-hyvitettävä",
+          "price": 2977
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Signature-sviitti",
+          "rate": "Hyvitettävä",
+          "price": 3308
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Presidenttisviitti, oma allas",
+          "rate": "Hyvitettävä",
+          "price": 7512
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "hotels",
+          "cat": "perus",
+          "room": "Kahden hengen perhehuone, puutarhanäköala (Deluxe, lastensänky)",
+          "rate": "Jäsenhinta −10 %",
+          "price": 1366
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "hotels",
+          "cat": "allas",
+          "room": "Kahden hengen perhehuone, allasnäköala (Deluxe, Jaz Bluemarine)",
+          "rate": "Jäsenhinta −10 %",
+          "price": 1452
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "hotels",
+          "cat": "meri",
+          "room": "Kahden hengen perhehuone, merinäköala (Deluxe)",
+          "rate": "Jäsenhinta −10 %",
+          "price": 2073
+        },
+        {
+          "hotel": "asteria",
+          "source": "hotels",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen/Twin, Garden View",
+          "rate": "Julkinen hinta",
+          "price": 1693
+        },
+        {
+          "hotel": "asteria",
+          "source": "hotels",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen/Twin, Sea View",
+          "rate": "Julkinen hinta",
+          "price": 2324
+        },
+        {
+          "hotel": "asteria",
+          "source": "hotels",
+          "cat": "allas",
+          "room": "Perhehuone, allasnäköala (Deluxe, Queen/Twin)",
+          "rate": "Alennettu hinta",
+          "price": 2658
+        },
+        {
+          "hotel": "asteria",
+          "source": "hotels",
+          "cat": "sviitti",
+          "room": "Perhesviitti, 2 makuuhuonetta",
+          "rate": "Hotels.com-hinta",
+          "price": 7654
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "hotels",
+          "cat": "sviitti",
+          "room": "Family Suite",
+          "rate": "Ei-hyvitettävä",
+          "price": 2460
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "hotels",
+          "cat": "sviitti",
+          "room": "Deluxe-sviitti",
+          "rate": "Ei-hyvitettävä",
+          "price": 2946
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "trivago",
+          "cat": "perus",
+          "room": "Kahden hengen perhehuone, puutarhanäköala (Deluxe)",
+          "rate": "Travellink · 181 €/yö · maksuton peruutus",
+          "price": 1269
+        },
+        {
+          "hotel": "asteria",
+          "source": "trivago",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen/Twin, Garden View",
+          "rate": "Hotels.com · 242 €/yö",
+          "price": 1693
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "trivago",
+          "cat": "sviitti",
+          "room": "Family Suite, parisänky tai erillinen vuode",
+          "rate": "Stayforlong · 275 €/yö",
+          "price": 1928
+        }
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "rows": [
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen Bed, Garden View",
+          "rate": "Stay Longer Save More",
+          "price": 1127
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen Bed, Kids Bed, Garden View",
+          "rate": "Stay Longer Save More",
+          "price": 1127
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "allas",
+          "room": "JAZ Bluemarine – Deluxe Family, Queen Bed",
+          "rate": "Stay Longer Save More",
+          "price": 1180
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen Bed, Kids Bed, Pool View",
+          "rate": "Stay Longer Save More",
+          "price": 1236
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen Bed, Pool View",
+          "rate": "Stay Longer Save More",
+          "price": 1236
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen Bed, Sea View",
+          "rate": "Stay Longer Save More",
+          "price": 1558
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "direct",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen Bed, Swim Up",
+          "rate": "Stay Longer Save More",
+          "price": 2104
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen/Twin, Garden View",
+          "rate": "Stay Longer Save More",
+          "price": 1490
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen/Twin, Pool View",
+          "rate": "Stay Longer Save More",
+          "price": 1565
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen/Twin, Partial Sea View",
+          "rate": "Stay Longer Save More",
+          "price": 1717
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen/Twin, Sea View",
+          "rate": "Stay Longer Save More",
+          "price": 1868
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen/Twin, Swim-up",
+          "rate": "Stay Longer Save More",
+          "price": 2246
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Family Suite (2 makuuhuonetta)",
+          "rate": "Stay Longer Save More",
+          "price": 4748
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Family Suite (2 mh), Swim Up",
+          "rate": "Stay Longer Save More",
+          "price": 4956
+        },
+        {
+          "hotel": "asteria",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Grand Suite",
+          "rate": "Stay Longer Save More",
+          "price": 7909
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Family Suite, merinäköala",
+          "rate": "Non-refundable · 235 €/yö",
+          "price": 1645
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Family Suite, merinäköala",
+          "rate": "Best Luxury AI · 261 €/yö",
+          "price": 1827
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Deluxe Suite, merinäköala",
+          "rate": "Non-refundable · 289 €/yö",
+          "price": 2023
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "direct",
+          "cat": "sviitti",
+          "room": "Deluxe Suite, merinäköala",
+          "rate": "Best Luxury AI · 321 €/yö",
+          "price": 2247
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "perus",
+          "room": "Deluxe Family Room, Garden View",
+          "rate": "Genius −16 %",
+          "price": 1735
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "perus",
+          "room": "Deluxe Family Queen, Garden View, lastensänky",
+          "rate": "Genius −16 %",
+          "price": 1735
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe Family Room, Pool View – Jaz Bluemarine",
+          "rate": "Genius −16 %",
+          "price": 1816
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe-perhehuone, allasnäköala",
+          "rate": "Genius −16 %",
+          "price": 1902
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe Family Queen, Pool View, lastensänky",
+          "rate": "Genius −16 %",
+          "price": 1902
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "meri",
+          "room": "Deluxe-perhehuone, merinäköala",
+          "rate": "Genius −16 %",
+          "price": 2398
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe Family Room – Swim Up",
+          "rate": "Genius −16 %",
+          "price": 3238
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen/Twin, Garden View",
+          "rate": "Genius",
+          "price": 2293
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen/Twin, Pool View",
+          "rate": "Genius",
+          "price": 2409
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen/Twin, Sea View",
+          "rate": "Genius",
+          "price": 2875
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen/Twin, Partial Sea View",
+          "rate": "Genius",
+          "price": 2935
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "allas",
+          "room": "Deluxe Family, Queen/Twin, Swim-up",
+          "rate": "Genius",
+          "price": 3457
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Family Suite (2 Bedrooms)",
+          "rate": "Genius",
+          "price": 7905
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Family Suite (2 Bedrooms), Swim Up",
+          "rate": "Genius",
+          "price": 9411
+        },
+        {
+          "hotel": "asteria",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Grand Suite",
+          "rate": "Genius",
+          "price": 11578
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Perhesviitti",
+          "rate": "Ei-hyvitettävä",
+          "price": 1959
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Perhesviitti",
+          "rate": "Hyvitettävä",
+          "price": 2176
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Deluxe-sviitti",
+          "rate": "Ei-hyvitettävä",
+          "price": 2417
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Deluxe-sviitti",
+          "rate": "Hyvitettävä",
+          "price": 2685
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Signature-sviitti",
+          "rate": "Ei-hyvitettävä",
+          "price": 2976
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Signature-sviitti",
+          "rate": "Hyvitettävä",
+          "price": 3307
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "booking",
+          "cat": "sviitti",
+          "room": "Presidenttisviitti, oma allas",
+          "rate": "Hyvitettävä",
+          "price": 7510
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "hotels",
+          "cat": "perus",
+          "room": "Kahden hengen perhehuone, puutarhanäköala (Deluxe, lastensänky)",
+          "rate": "Jäsenhinta −10 %",
+          "price": 1364
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "hotels",
+          "cat": "allas",
+          "room": "Kahden hengen perhehuone, allasnäköala (Deluxe, Jaz Bluemarine)",
+          "rate": "Jäsenhinta −10 %",
+          "price": 1451
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "hotels",
+          "cat": "meri",
+          "room": "Kahden hengen perhehuone, merinäköala (Deluxe)",
+          "rate": "Jäsenhinta −10 %",
+          "price": 2071
+        },
+        {
+          "hotel": "asteria",
+          "source": "hotels",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen/Twin, Garden View",
+          "rate": "Julkinen hinta",
+          "price": 1673
+        },
+        {
+          "hotel": "asteria",
+          "source": "hotels",
+          "cat": "meri",
+          "room": "Deluxe Family, Queen/Twin, Sea View",
+          "rate": "Julkinen hinta",
+          "price": 2298
+        },
+        {
+          "hotel": "asteria",
+          "source": "hotels",
+          "cat": "allas",
+          "room": "Perhehuone, allasnäköala (Deluxe, Queen/Twin)",
+          "rate": "Julkinen hinta",
+          "price": 2655
+        },
+        {
+          "hotel": "asteria",
+          "source": "hotels",
+          "cat": "sviitti",
+          "room": "Perhesviitti, 2 makuuhuonetta",
+          "rate": "Julkinen hinta",
+          "price": 7646
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "hotels",
+          "cat": "sviitti",
+          "room": "Family Suite",
+          "rate": "Ei-hyvitettävä",
+          "price": 2458
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "hotels",
+          "cat": "sviitti",
+          "room": "Deluxe-sviitti",
+          "rate": "Ei-hyvitettävä",
+          "price": 2943
+        },
+        {
+          "hotel": "aquamarine",
+          "source": "trivago",
+          "cat": "perus",
+          "room": "Kahden hengen perhehuone, puutarhanäköala (Deluxe)",
+          "rate": "Travellink · 181 €/yö · maksuton peruutus",
+          "price": 1268
+        },
+        {
+          "hotel": "asteria",
+          "source": "trivago",
+          "cat": "perus",
+          "room": "Deluxe Family, Queen/Twin, Garden View",
+          "rate": "Hotels.com · 239 €/yö",
+          "price": 1673
+        },
+        {
+          "hotel": "steigenberger",
+          "source": "trivago",
+          "cat": "sviitti",
+          "room": "Family Suite",
+          "rate": "sembo · 291 €/yö",
+          "price": 2036
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  "use strict";
+
+  var DATA = JSON.parse(document.getElementById("price-data").textContent);
+  var SLOT = { 1: "var(--s1)", 2: "var(--s2)", 3: "var(--s3)", 4: "var(--s4)" };
+
+  var state = {
+    hotel: "all",
+    cat: "all",
+    tax: "incl",
+    sources: DATA.sources.map(function (s) { return s.id; })
+  };
+
+  var hotelName = {}, sourceById = {}, catName = {};
+  DATA.hotels.forEach(function (h) { hotelName[h.id] = h.name; });
+  DATA.sources.forEach(function (s) { sourceById[s.id] = s; });
+  DATA.categories.forEach(function (c) { catName[c.id] = c.name; });
+
+  function eur(n) {
+    return "€" + Math.round(n).toLocaleString("fi-FI");
+  }
+
+  // Normalise a row's price to the currently selected tax basis.
+  // Returns { value, estimated } or null when the conversion is not meaningful.
+  function priceOf(row) {
+    var src = sourceById[row.source];
+    var m = DATA.meta.taxMultiplier;
+    if (state.tax === "incl") {
+      return src.tax === "incl"
+        ? { value: row.price, estimated: false }
+        : { value: row.price * m, estimated: true };
+    }
+    return src.tax === "excl"
+      ? { value: row.price, estimated: false }
+      : { value: row.price / m, estimated: true };
+  }
+
+  function matches(row) {
+    if (state.hotel !== "all" && row.hotel !== state.hotel) return false;
+    if (state.cat !== "all" && row.cat !== state.cat) return false;
+    if (state.sources.indexOf(row.source) === -1) return false;
+    return true;
+  }
+
+  function latest() {
+    return DATA.snapshots[DATA.snapshots.length - 1];
+  }
+
+  /* ---------------- filters ---------------- */
+
+  function chip(label, pressed, onClick, colorDot) {
+    var b = document.createElement("button");
+    b.className = "chip";
+    b.type = "button";
+    b.setAttribute("aria-pressed", pressed ? "true" : "false");
+    if (colorDot) {
+      var d = document.createElement("span");
+      d.className = "dot";
+      d.style.background = colorDot;
+      b.appendChild(d);
+    }
+    b.appendChild(document.createTextNode(label));
+    b.addEventListener("click", onClick);
+    return b;
+  }
+
+  function group(label, children) {
+    var g = document.createElement("div");
+    g.className = "fgroup";
+    var l = document.createElement("div");
+    l.className = "flabel";
+    l.textContent = label;
+    var row = document.createElement("div");
+    row.className = "chips";
+    children.forEach(function (c) { row.appendChild(c); });
+    g.appendChild(l);
+    g.appendChild(row);
+    return g;
+  }
+
+  function renderFilters() {
+    var box = document.getElementById("filters");
+    box.textContent = "";
+
+    var hotelChips = [chip("Kaikki", state.hotel === "all", function () { state.hotel = "all"; render(); })];
+    DATA.hotels.forEach(function (h) {
+      hotelChips.push(chip(h.name.replace("Steigenberger ALDAU Beach", "Steigenberger"),
+        state.hotel === h.id, function () { state.hotel = h.id; render(); }));
+    });
+    box.appendChild(group("Hotelli", hotelChips));
+
+    var catChips = [chip("Kaikki", state.cat === "all", function () { state.cat = "all"; render(); })];
+    DATA.categories.forEach(function (c) {
+      catChips.push(chip(c.name, state.cat === c.id, function () { state.cat = c.id; render(); }));
+    });
+    box.appendChild(group("Huoneluokka", catChips));
+
+    box.appendChild(group("Hinta", [
+      chip("Verojen kanssa", state.tax === "incl", function () { state.tax = "incl"; render(); }),
+      chip("Ilman veroja", state.tax === "excl", function () { state.tax = "excl"; render(); })
+    ]));
+
+    var srcChips = DATA.sources.map(function (s) {
+      var on = state.sources.indexOf(s.id) !== -1;
+      return chip(s.name, on, function () {
+        var i = state.sources.indexOf(s.id);
+        if (i === -1) { state.sources.push(s.id); } else if (state.sources.length > 1) { state.sources.splice(i, 1); }
+        render();
+      }, SLOT[s.slot]);
+    });
+    box.appendChild(group("Lähde", srcChips));
+  }
+
+  /* ---------------- tiles ---------------- */
+
+  function renderTiles() {
+    var box = document.getElementById("tiles");
+    box.textContent = "";
+    var rows = latest().rows.filter(matches);
+
+    var best = {};
+    rows.forEach(function (r) {
+      var p = priceOf(r);
+      if (!p) return;
+      if (!best[r.hotel] || p.value < best[r.hotel].p.value) best[r.hotel] = { r: r, p: p };
+    });
+
+    var all = Object.keys(best).map(function (k) { return best[k].p.value; });
+    var min = all.length ? Math.min.apply(null, all) : null;
+
+    DATA.hotels.forEach(function (h) {
+      var b = best[h.id];
+      var t = document.createElement("div");
+      t.className = "tile";
+      if (b && b.p.value === min) t.classList.add("best");
+
+      var n = document.createElement("div");
+      n.className = "tile-name";
+      n.textContent = h.name;
+      t.appendChild(n);
+
+      var price = document.createElement("div");
+      price.className = "tile-price";
+      price.textContent = b ? eur(b.p.value) : "–";
+      t.appendChild(price);
+
+      var meta = document.createElement("div");
+      meta.className = "tile-meta";
+      meta.textContent = b ? b.r.room : "Ei hintaa valituilla suodattimilla";
+      t.appendChild(meta);
+
+      if (b) {
+        var src = document.createElement("div");
+        src.className = "tile-src";
+        src.textContent = sourceById[b.r.source].name + " · " + b.r.rate + (b.p.estimated ? " · arvio" : "");
+        t.appendChild(src);
+      }
+
+      if (b && b.p.value === min) {
+        var bg = document.createElement("span");
+        bg.className = "badge";
+        bg.textContent = "Halvin juuri nyt";
+        t.appendChild(bg);
+      }
+      box.appendChild(t);
+    });
+  }
+
+  /* ---------------- chart ---------------- */
+
+  function seriesData() {
+    // one series per selected source: cheapest matching price per snapshot
+    return state.sources.map(function (sid) {
+      var s = sourceById[sid];
+      var pts = DATA.snapshots.map(function (snap, i) {
+        var vals = snap.rows.filter(function (r) { return r.source === sid && matches(r); })
+                            .map(function (r) { var p = priceOf(r); return p ? p.value : null; })
+                            .filter(function (v) { return v !== null; });
+        return vals.length ? { i: i, date: snap.date, v: Math.min.apply(null, vals) } : null;
+      });
+      return { id: sid, name: s.name, color: SLOT[s.slot], pts: pts };
+    }).filter(function (s) { return s.pts.some(function (p) { return p; }); });
+  }
+
+  function fiDate(iso) {
+    var p = iso.split("-");
+    return parseInt(p[2], 10) + "." + parseInt(p[1], 10) + ".";
+  }
+
+  function renderChart() {
+    var svg = document.getElementById("chart");
+    svg.textContent = "";
+    var series = seriesData();
+    var n = DATA.snapshots.length;
+
+    var W = 900, H = 300, padL = 62, padR = 108, padT = 16, padB = 34;
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+
+    var vals = [];
+    series.forEach(function (s) { s.pts.forEach(function (p) { if (p) vals.push(p.v); }); });
+
+    var note = document.getElementById("empty-note");
+    if (!vals.length) {
+      note.textContent = "Ei hintoja valituilla suodattimilla. Laajenna valintaa ylhäältä.";
+      document.getElementById("legend").textContent = "";
+      document.getElementById("chart-note").textContent = "";
+      return;
+    }
+
+    var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+    var span = hi - lo || Math.max(hi * 0.1, 50);
+    lo = lo - span * 0.25; hi = hi + span * 0.25;
+
+    var x = function (i) { return n === 1 ? (padL + (W - padL - padR) / 2) : padL + i * (W - padL - padR) / (n - 1); };
+    var y = function (v) { return padT + (hi - v) * (H - padT - padB) / (hi - lo); };
+
+    var NS = "http://www.w3.org/2000/svg";
+    function el(t, attrs) {
+      var e = document.createElementNS(NS, t);
+      for (var k in attrs) e.setAttribute(k, attrs[k]);
+      return e;
+    }
+
+    // grid + y labels
+    var ticks = 4;
+    for (var t = 0; t <= ticks; t++) {
+      var v = lo + (hi - lo) * t / ticks;
+      var yy = y(v);
+      svg.appendChild(el("line", { x1: padL, x2: W - padR, y1: yy, y2: yy,
+        stroke: "var(--rule)", "stroke-width": 1 }));
+      var lab = el("text", { x: padL - 10, y: yy + 4, "text-anchor": "end",
+        fill: "var(--ink-3)", "font-size": 11, "font-family": "IBM Plex Mono, monospace" });
+      lab.textContent = eur(v);
+      svg.appendChild(lab);
+    }
+
+    // x labels
+    DATA.snapshots.forEach(function (snap, i) {
+      var lab = el("text", { x: x(i), y: H - 10, "text-anchor": "middle",
+        fill: "var(--ink-3)", "font-size": 11, "font-family": "IBM Plex Mono, monospace" });
+      lab.textContent = fiDate(snap.date);
+      svg.appendChild(lab);
+    });
+
+    // series
+    var endLabels = [];
+    series.forEach(function (s) {
+      var run = [];
+      function flush() {
+        if (run.length > 1) {
+          var d = run.map(function (p, k) { return (k ? "L" : "M") + x(p.i) + " " + y(p.v); }).join(" ");
+          svg.appendChild(el("path", { d: d, fill: "none", stroke: s.color,
+            "stroke-width": 2, "stroke-linecap": "round", "stroke-linejoin": "round" }));
+        }
+        run = [];
+      }
+      s.pts.forEach(function (p) { if (p) { run.push(p); } else { flush(); } });
+      flush();
+
+      s.pts.forEach(function (p) {
+        if (!p) return;
+        svg.appendChild(el("circle", { cx: x(p.i), cy: y(p.v), r: 5,
+          fill: s.color, stroke: "var(--surface)", "stroke-width": 2 }));
+        var tt = el("title");
+        tt.textContent = s.name + " · " + fiDate(p.date) + " · " + eur(p.v);
+        svg.lastChild.appendChild(tt);
+      });
+
+      // direct end label
+      var last = null;
+      for (var i = s.pts.length - 1; i >= 0; i--) { if (s.pts[i]) { last = s.pts[i]; break; } }
+      if (last) endLabels.push({ x: x(last.i) + 11, y: y(last.v) + 4, text: eur(last.v), color: s.color });
+    });
+
+    // push overlapping end labels apart so they never collide
+    endLabels.sort(function (a, b) { return a.y - b.y; });
+    var MINGAP = 15;
+    for (var q = 1; q < endLabels.length; q++) {
+      if (endLabels[q].y - endLabels[q - 1].y < MINGAP) endLabels[q].y = endLabels[q - 1].y + MINGAP;
+    }
+    var overflow = endLabels.length ? endLabels[endLabels.length - 1].y - (H - padB) : 0;
+    if (overflow > 0) endLabels.forEach(function (l) { l.y -= overflow; });
+    endLabels.forEach(function (l) {
+      var lb = el("text", { x: l.x, y: l.y, fill: "var(--ink)", "font-size": 12,
+        "font-weight": 600, "font-family": "IBM Plex Mono, monospace" });
+      lb.textContent = l.text;
+      svg.appendChild(lb);
+      svg.appendChild(el("rect", { x: l.x - 7, y: l.y - 8, width: 3, height: 9,
+        rx: 1.5, fill: l.color }));
+    });
+
+    // legend
+    var lg = document.getElementById("legend");
+    lg.textContent = "";
+    series.forEach(function (s) {
+      var k = document.createElement("span");
+      k.className = "key";
+      var i = document.createElement("i");
+      i.style.background = s.color;
+      k.appendChild(i);
+      k.appendChild(document.createTextNode(s.name));
+      lg.appendChild(k);
+    });
+
+    document.getElementById("chart-note").textContent =
+      "Halvin hinta · " + (state.tax === "incl" ? "verojen kanssa" : "ilman veroja");
+
+    note.textContent = n === 1
+      ? "Tässä on toistaiseksi vain yksi mittauspiste. Kaavio muuttuu viivoiksi, kun aamun ajot kerryttävät lisää päiviä."
+      : "";
+  }
+
+  /* ---------------- table ---------------- */
+
+  function renderTable() {
+    var tb = document.getElementById("tbody");
+    tb.textContent = "";
+    var rows = latest().rows.filter(matches);
+
+    var byHotel = {};
+    rows.forEach(function (r) { (byHotel[r.hotel] = byHotel[r.hotel] || []).push(r); });
+
+    var shown = 0;
+    DATA.hotels.forEach(function (h) {
+      var list = byHotel[h.id];
+      if (!list || !list.length) return;
+
+      var withP = list.map(function (r) { return { r: r, p: priceOf(r) }; })
+                      .filter(function (o) { return o.p; })
+                      .sort(function (a, b) { return a.p.value - b.p.value; });
+      if (!withP.length) return;
+      shown += withP.length;
+
+      var gh = document.createElement("tr");
+      gh.className = "group-head";
+      var gtd = document.createElement("td");
+      gtd.colSpan = 5;
+      gtd.textContent = h.name + " · " + h.area;
+      gh.appendChild(gtd);
+      tb.appendChild(gh);
+
+      withP.forEach(function (o, idx) {
+        var tr = document.createElement("tr");
+        if (idx === 0) tr.className = "cheapest";
+
+        var c1 = document.createElement("td");
+        c1.className = "room";
+        c1.textContent = o.r.room;
+        tr.appendChild(c1);
+
+        var c2 = document.createElement("td");
+        var tag = document.createElement("span");
+        tag.className = "tag";
+        tag.textContent = catName[o.r.cat];
+        c2.appendChild(tag);
+        tr.appendChild(c2);
+
+        var c3 = document.createElement("td");
+        c3.textContent = sourceById[o.r.source].name;
+        tr.appendChild(c3);
+
+        var c4 = document.createElement("td");
+        c4.textContent = o.r.rate;
+        tr.appendChild(c4);
+
+        var c5 = document.createElement("td");
+        c5.className = "num";
+        c5.textContent = eur(o.p.value);
+        if (o.p.estimated) {
+          var e = document.createElement("span");
+          e.className = "tag";
+          e.style.marginLeft = "6px";
+          e.textContent = "arvio";
+          c5.appendChild(e);
+        }
+        tr.appendChild(c5);
+
+        tb.appendChild(tr);
+      });
+    });
+
+    document.getElementById("table-note").textContent =
+      shown + " hintariviä · " + (state.tax === "incl" ? "verojen kanssa" : "ilman veroja");
+  }
+
+  function renderFooter() {
+    var f = document.getElementById("footer");
+    var d = DATA.meta.updated.split("-");
+    f.textContent = "Viimeksi päivitetty " + parseInt(d[2], 10) + "." + parseInt(d[1], 10) + "." + d[0] +
+      " · " + DATA.snapshots.length + " mittauspiste" + (DATA.snapshots.length === 1 ? "" : "ttä") +
+      " · Lähteet: hotellien omat varausjärjestelmät, Booking.com, Hotels.com, Trivago.";
+  }
+
+  function render() {
+    renderFilters();
+    renderTiles();
+    renderChart();
+    renderTable();
+    renderFooter();
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
