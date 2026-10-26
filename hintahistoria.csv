@@ -662,3 +662,60 @@
 2026-10-19;Jaz Aquamarine;Trivago;Perushuone;"Kahden hengen perhehuone, puutarhanäköala (Deluxe, lastensänky)";Stayforlong · 204 €/yö;"1428,00";sisaltaa verot;"1428,00";ei
 2026-10-19;Jaz Elite Asteria;Trivago;Perushuone;"Deluxe Family, Queen/Twin, Garden View";Hotels.com · 378 €/yö;"2646,00";sisaltaa verot;"2646,00";ei
 2026-10-19;Steigenberger ALDAU Beach;Trivago;Sviitti;Family Suite;trivago Book & Go · 384 €/yö;"2688,00";sisaltaa verot;"2688,00";ei
+2026-10-26;Jaz Aquamarine;Hotellin oma;Perushuone;"Deluxe Family, Queen Bed, Kids Bed, Garden View";Stay Longer Save More;"1148,00";ilman veroja;"1465,77";kylla
+2026-10-26;Jaz Aquamarine;Hotellin oma;Allas / puutarha;"JAZ Bluemarine – Deluxe Family, Queen Bed";Stay Longer Save More;"1243,00";ilman veroja;"1587,06";kylla
+2026-10-26;Jaz Aquamarine;Hotellin oma;Allas / puutarha;"Deluxe Family, Queen Bed, Kids Bed, Pool View";Stay Longer Save More;"1233,00";ilman veroja;"1574,29";kylla
+2026-10-26;Jaz Aquamarine;Hotellin oma;Allas / puutarha;"Deluxe Family, Queen Bed, Pool View";Stay Longer Save More;"1233,00";ilman veroja;"1574,29";kylla
+2026-10-26;Jaz Aquamarine;Hotellin oma;Merinäköala;"Deluxe Family, Queen Bed, Sea View";Stay Longer Save More;"1435,00";ilman veroja;"1832,21";kylla
+2026-10-26;Jaz Aquamarine;Hotellin oma;Allas / puutarha;"Deluxe Family, Queen Bed, Swim Up";Stay Longer Save More;"2364,00";ilman veroja;"3018,36";kylla
+2026-10-26;Jaz Elite Asteria;Hotellin oma;Perushuone;"Deluxe Family, Queen/Twin, Garden View";Stay Longer Save More;"1730,00";ilman veroja;"2208,86";kylla
+2026-10-26;Jaz Elite Asteria;Hotellin oma;Allas / puutarha;"Deluxe Family, Queen/Twin, Pool View";Stay Longer Save More;"1797,00";ilman veroja;"2294,41";kylla
+2026-10-26;Jaz Elite Asteria;Hotellin oma;Merinäköala;"Deluxe Family, Queen/Twin, Partial Sea View";Stay Longer Save More;"1730,00";ilman veroja;"2208,86";kylla
+2026-10-26;Jaz Elite Asteria;Hotellin oma;Merinäköala;"Deluxe Family, Queen/Twin, Sea View";Stay Longer Save More;"1917,00";ilman veroja;"2447,63";kylla
+2026-10-26;Jaz Elite Asteria;Hotellin oma;Allas / puutarha;"Deluxe Family, Queen/Twin, Swim-up";Stay Longer Save More;"2496,00";ilman veroja;"3186,89";kylla
+2026-10-26;Jaz Elite Asteria;Hotellin oma;Sviitti;Family Suite (2 makuuhuonetta);Stay Longer Save More;"4804,00";ilman veroja;"6133,75";kylla
+2026-10-26;Jaz Elite Asteria;Hotellin oma;Sviitti;"Family Suite (2 mh), Swim Up";Stay Longer Save More;"5015,00";ilman veroja;"6403,15";kylla
+2026-10-26;Jaz Elite Asteria;Hotellin oma;Sviitti;Grand Suite;Stay Longer Save More;"8003,00";ilman veroja;"10218,23";kylla
+2026-10-26;Steigenberger ALDAU Beach;Hotellin oma;Sviitti;"Family Suite, merinäköala";Non-refundable · 258 €/yö;"1806,00";ilman veroja;"2305,90";kylla
+2026-10-26;Steigenberger ALDAU Beach;Hotellin oma;Sviitti;"Family Suite, merinäköala";Best Luxury AI · 287 €/yö;"2009,00";ilman veroja;"2565,09";kylla
+2026-10-26;Steigenberger ALDAU Beach;Hotellin oma;Sviitti;"Deluxe Suite, merinäköala";Non-refundable · 315 €/yö;"2205,00";ilman veroja;"2815,34";kylla
+2026-10-26;Steigenberger ALDAU Beach;Hotellin oma;Sviitti;"Deluxe Suite, merinäköala";Best Luxury AI · 350 €/yö;"2450,00";ilman veroja;"3128,16";kylla
+2026-10-26;Jaz Aquamarine;Booking.com;Perushuone;"Deluxe Family Room, Garden View";Genius;"1506,00";sisaltaa verot;"1506,00";ei
+2026-10-26;Jaz Aquamarine;Booking.com;Perushuone;"Deluxe Family Queen, Garden View, lastensänky";Genius;"1506,00";sisaltaa verot;"1506,00";ei
+2026-10-26;Jaz Aquamarine;Booking.com;Allas / puutarha;"Deluxe Family Room, Pool View – Jaz Bluemarine";Genius;"1630,00";sisaltaa verot;"1630,00";ei
+2026-10-26;Jaz Aquamarine;Booking.com;Allas / puutarha;"Deluxe-perhehuone, allasnäkymä";Genius;"1618,00";sisaltaa verot;"1618,00";ei
+2026-10-26;Jaz Aquamarine;Booking.com;Allas / puutarha;"Deluxe Family Queen, Pool View, lastensänky";Genius;"1618,00";sisaltaa verot;"1618,00";ei
+2026-10-26;Jaz Aquamarine;Booking.com;Merinäköala;"Deluxe-perhehuone, merinäköala";Genius;"1883,00";sisaltaa verot;"1883,00";ei
+2026-10-26;Jaz Aquamarine;Booking.com;Allas / puutarha;Deluxe Family Room – Swim Up;Genius;"3101,00";sisaltaa verot;"3101,00";ei
+2026-10-26;Jaz Elite Asteria;Booking.com;Perushuone;"Deluxe Family, Queen/Twin, Garden View";Genius;"2248,00";sisaltaa verot;"2248,00";ei
+2026-10-26;Jaz Elite Asteria;Booking.com;Allas / puutarha;"Deluxe Family, Queen/Twin, Pool View";Genius;"2334,00";sisaltaa verot;"2334,00";ei
+2026-10-26;Jaz Elite Asteria;Booking.com;Merinäköala;"Deluxe Family, Queen/Twin, Sea View";Genius;"2490,00";sisaltaa verot;"2490,00";ei
+2026-10-26;Jaz Elite Asteria;Booking.com;Merinäköala;"Deluxe Family, Queen/Twin, Partial Sea View";Genius;"2497,00";sisaltaa verot;"2497,00";ei
+2026-10-26;Jaz Elite Asteria;Booking.com;Allas / puutarha;"Deluxe Family, Queen/Twin, Swim-up";Genius;"3242,00";sisaltaa verot;"3242,00";ei
+2026-10-26;Jaz Elite Asteria;Booking.com;Sviitti;Family Suite (2 Bedrooms);Genius;"6032,00";sisaltaa verot;"6032,00";ei
+2026-10-26;Jaz Elite Asteria;Booking.com;Sviitti;"Family Suite (2 Bedrooms), Swim Up";Genius;"7238,00";sisaltaa verot;"7238,00";ei
+2026-10-26;Jaz Elite Asteria;Booking.com;Sviitti;Grand Suite (1 Bedroom & 1 Living Room);Genius;"9147,00";sisaltaa verot;"9147,00";ei
+2026-10-26;Steigenberger ALDAU Beach;Booking.com;Sviitti;Perhesviitti;Ei-hyvitettävä;"2167,00";sisaltaa verot;"2167,00";ei
+2026-10-26;Steigenberger ALDAU Beach;Booking.com;Sviitti;Perhesviitti;Hyvitettävä;"2408,00";sisaltaa verot;"2408,00";ei
+2026-10-26;Steigenberger ALDAU Beach;Booking.com;Sviitti;Deluxe-sviitti;Ei-hyvitettävä;"2644,00";sisaltaa verot;"2644,00";ei
+2026-10-26;Steigenberger ALDAU Beach;Booking.com;Sviitti;Deluxe-sviitti;Hyvitettävä;"2938,00";sisaltaa verot;"2938,00";ei
+2026-10-26;Steigenberger ALDAU Beach;Booking.com;Sviitti;Signature-sviitti;Ei-hyvitettävä;"3227,00";sisaltaa verot;"3227,00";ei
+2026-10-26;Steigenberger ALDAU Beach;Booking.com;Sviitti;Signature-sviitti;Hyvitettävä;"3586,00";sisaltaa verot;"3586,00";ei
+2026-10-26;Jaz Aquamarine;Hotels.com;Perushuone;"Kahden hengen perhehuone, puutarhanäkymä (Deluxe, lastensänky)";Jäsenhinta −10 %;"1215,00";sisaltaa verot;"1215,00";ei
+2026-10-26;Jaz Aquamarine;Hotels.com;Allas / puutarha;"Kahden hengen perhehuone, allasnäkymä (Deluxe, Jaz Bluemarine)";Jäsenhinta −10 %;"1347,00";sisaltaa verot;"1347,00";ei
+2026-10-26;Jaz Aquamarine;Hotels.com;Allas / puutarha;"Perhehuone, allasnäkymä (Deluxe)";Jäsenhinta −10 %;"1334,00";sisaltaa verot;"1334,00";ei
+2026-10-26;Jaz Aquamarine;Hotels.com;Merinäköala;"Kahden hengen perhehuone, merinäkymä (Deluxe)";Jäsenhinta −10 %;"1615,00";sisaltaa verot;"1615,00";ei
+2026-10-26;Jaz Aquamarine;Hotels.com;Allas / puutarha;Kahden hengen perhehuone (Deluxe Swim Up);Jäsenhinta −10 %;"2906,00";sisaltaa verot;"2906,00";ei
+2026-10-26;Jaz Elite Asteria;Hotels.com;Perushuone;"Deluxe Family, Queen/Twin, Garden View";Jäsenhinta −10 %;"2664,00";sisaltaa verot;"2664,00";ei
+2026-10-26;Jaz Elite Asteria;Hotels.com;Merinäköala;"Deluxe Family, Queen/Twin, Sea View";Jäsenhinta −10 %;"2926,00";sisaltaa verot;"2926,00";ei
+2026-10-26;Jaz Elite Asteria;Hotels.com;Allas / puutarha;"Perhehuone, allasnäkymä (Deluxe, Queen/Twin)";Jäsenhinta −10 %;"2757,00";sisaltaa verot;"2757,00";ei
+2026-10-26;Jaz Elite Asteria;Hotels.com;Merinäköala;"Perhehuone, osittainen merinäkymä (Deluxe)";Jäsenhinta −10 %;"2664,00";sisaltaa verot;"2664,00";ei
+2026-10-26;Jaz Elite Asteria;Hotels.com;Allas / puutarha;"Perhehuone (Swim-up, Deluxe, Queen/Twin)";Jäsenhinta −10 %;"3742,00";sisaltaa verot;"3742,00";ei
+2026-10-26;Jaz Elite Asteria;Hotels.com;Sviitti;"Perhesviitti, 2 makuuhuonetta";Jäsenhinta −10 %;"6793,00";sisaltaa verot;"6793,00";ei
+2026-10-26;Jaz Elite Asteria;Hotels.com;Sviitti;"Perhesviitti, 2 makuuhuonetta (Swim-up)";Jäsenhinta −10 %;"7969,00";sisaltaa verot;"7969,00";ei
+2026-10-26;Jaz Elite Asteria;Hotels.com;Sviitti;Grand-sviitti;Jäsenhinta −10 %;"10711,00";sisaltaa verot;"10711,00";ei
+2026-10-26;Steigenberger ALDAU Beach;Hotels.com;Sviitti;Family Suite;Ei-hyvitettävä;"2697,00";sisaltaa verot;"2697,00";ei
+2026-10-26;Steigenberger ALDAU Beach;Hotels.com;Sviitti;Deluxe-sviitti;Ei-hyvitettävä;"3203,00";sisaltaa verot;"3203,00";ei
+2026-10-26;Jaz Aquamarine;Trivago;Perushuone;"Kahden hengen perhehuone, puutarhanäkymä (Deluxe, lastensänky)";Stayforlong · 201 €/yö;"1407,00";sisaltaa verot;"1407,00";ei
+2026-10-26;Jaz Elite Asteria;Trivago;Perushuone;"Deluxe Family, Queen/Twin, Garden View";Hotels.com · 381 €/yö;"2664,00";sisaltaa verot;"2664,00";ei
+2026-10-26;Steigenberger ALDAU Beach;Trivago;Sviitti;Family Suite;Stayforlong · 313 €/yö;"2192,00";sisaltaa verot;"2192,00";ei
